@@ -29,8 +29,6 @@ export class PlayerShip {
         }
     }
     moveRight() {
-        console.log("this.width", this.width)
-        
         if (this.positionX < 100 - this.width) {
             this.positionX++
             this.updateUI()
