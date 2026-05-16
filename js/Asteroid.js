@@ -1,0 +1,1 @@
+console.log("Asteroid class")
