@@ -6,14 +6,33 @@ body {
   background-position: center;   /* pic will be centered */
   background-repeat: no-repeat;  /* mo repetition of the pic */
   display: flex;
-  justify-content: center;
+  position: relative;
+  /* justify-content: center; */
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 #playerShip img {
-    width: 80px;   /* feste Breite */
+    width: 10vh;   /* feste Breite */
     height: auto;  /* feste Höhe  */
     display: block; 
     mix-blend-mode: screen;  /* blendet helle Hintergründe aus */
+}
+
+#playerShip {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.asteroid {
+  position: absolute;
+}
+
+.asteroid img {
+  width: 15vh;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen; 
 }
