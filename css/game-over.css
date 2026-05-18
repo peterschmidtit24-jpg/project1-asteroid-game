@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  background-color: rgb(45, 45, 45); /* Fallback-Farbe, falls Bild nicht lädt */
+  background-image: url('../images/background1.png');
+  background-size: cover;        /* pic fills out the screen */
+  background-position: center;   /* pic will be centered */
+  background-repeat: no-repeat;  /* mo repetition of the pic */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center; 
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  gap: 30px;
+}
+
+#page-gameover-h1 {
+  color:white;
+  font-size: 360%;
+  font-weight: 800;
+}
+
+#btn-restart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20vw;
+  height: 8vh;
+  background-color: crimson;
+  color: white;
+  text-decoration: none;
+  font-size: large;
+}

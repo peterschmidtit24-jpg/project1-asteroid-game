@@ -31,6 +31,11 @@ export class Asteroid {
 
     }
 
+
+    deleteRoid() {
+        this.asteroidElm.remove()
+    }
+
     updateUI() {
         this.asteroidElm.style.left = this.positionX + "vw"
         this.asteroidElm.style.bottom = this.positionY + "vh"
@@ -46,9 +51,9 @@ export class Asteroid {
             // asteroid should dissapear here
             this.updateUI()
         } else {
-            this.asteroidElm.remove()
-        }
-
-        
+            // this.asteroidElm.remove()
+            this.deleteRoid()
+        }        
     }
+
 }

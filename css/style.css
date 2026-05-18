@@ -10,6 +10,7 @@ body {
   /* justify-content: center; */
   align-items: center;
   height: 100vh;
+  /* doesn't scroll the windows before the asteroids reach teh bottom */
   overflow: hidden;
 }
 
@@ -32,6 +33,17 @@ body {
 
 .asteroid img {
   width: 15vh;
+  height: auto;
+  display: block;
+  mix-blend-mode: screen; 
+}
+
+.bullet {
+  position: absolute;
+}
+
+.bullet img {
+  width: 0.7vh;
   height: auto;
   display: block;
   mix-blend-mode: screen; 
