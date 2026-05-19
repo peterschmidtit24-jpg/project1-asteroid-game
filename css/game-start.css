@@ -12,16 +12,21 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
-  gap: 10px;
+  gap: 30px;
 }
 
-#page-gameover-h1 {
+#game-title {
+  color: gold;
+  font-size: xx-large;
+}
+
+#page-gamestart-h1 {
   color:white;
-  font-size: 360%;
+  font-size: xx-large;
   font-weight: 800;
 }
 
-#btn-restart {
+#btn-start {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,27 +36,5 @@ body {
   background-color: crimson;
   color: white;
   text-decoration: none;
-  font-size: large;
-  margin: 2%;
-}
-
-#score-info {
-  color:aliceblue;
-  font-size: xx-small;
-  background-color: rgba(220, 20, 60, 0.25);
-  padding: 1%;
-  gap: 2rem;
-}
-
-#shut-roids,
-#total-roids,
-#percentage {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-#game-title {
-  color: gold;
-  font-size: xx-large;
+  font-size:large;
 }

@@ -11,8 +11,8 @@ class GameManager {
         this.asteroids = []
         this.bullets = []
         this.shipShooting = false
-        this.shootSoundPath = "./sounds/bullet-shot.wav"
-        this.exploPath = "./sounds/roid-explode.mp3"
+        this.shootSoundPath = "../sounds/bullet-shot.wav"
+        this.exploPath = "../sounds/roid-explode.mp3"
         this.score = {
             totalRoids: 0, 
             destroyedRoids: 0
@@ -51,25 +51,31 @@ class GameManager {
                 console.log("Total asteroids = ", this.score.totalRoids)
 
                 clearInterval(timerId)
-                this.goToGameOver()
+                this.goToGameOver("won")
             }
         }, 800)
     }
 
-    goToGameOver() {
+    goToGameOver(gameStatus) {
         console.log("Total asteroids over = ", this.score.totalRoids)
         console.log("Total destroyed roids over = ", this.score.destroyedRoids)
 
         const percentage = (this.score.destroyedRoids/this.score.totalRoids)*100
         console.log("Total destroyed roids % = ", percentage.toFixed(1))
 
+        //setScores(gameStatus, this.score.destroyedRoids, this.score.totalRoids)
+
         this.playExploSound()
         this.playExploSound()
 
         setTimeout(() => {
+            localStorage.setItem("gameStatus", gameStatus);
+            localStorage.setItem("totalRoids", this.score.totalRoids);
+            localStorage.setItem("shotRoids", this.score.destroyedRoids);
+
             console.log("Game over. Game over. Game over. Game over.")
-            location.href = "./html/gameover.html"  
-        }, 10500);        
+            location.href = "../html/gameover.html"  
+        }, 8500);        
     }
 
     spawObjects() {
@@ -122,7 +128,7 @@ class GameManager {
                     // check if the ship collides with other object
                     if (this.player.isCollidingWith(roid)) {
                         this.player.deleteShip()
-                        this.goToGameOver()
+                        this.goToGameOver("destroyed")
                     }
                 }
             });         

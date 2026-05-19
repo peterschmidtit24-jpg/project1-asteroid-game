@@ -23,7 +23,7 @@ export class Bullet {
         this.bulletElm.className = "bullet"
 
         const bulletImg = document.createElement("img")
-        bulletImg.setAttribute("src", "./images/Bullet.png")
+        bulletImg.setAttribute("src", "../images/Bullet.png")
         bulletImg.setAttribute("alt", "bullet object")
 
         this.bulletElm.appendChild(bulletImg)

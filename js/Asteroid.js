@@ -21,7 +21,7 @@ export class Asteroid {
         this.asteroidElm.className = "asteroid"
 
         const asteroidImg = document.createElement("img")
-        asteroidImg.setAttribute("src", "./images/asteroid.png")
+        asteroidImg.setAttribute("src", "../images/asteroid.png")
         asteroidImg.setAttribute("alt", "asteroid 1")
 
         this.asteroidElm.appendChild(asteroidImg)
