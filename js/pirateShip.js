@@ -1,6 +1,8 @@
 
 console.log("Pirate ship shooting.")
 
+const pirateShipImageUrl = new URL("../images/pirateShip.png", import.meta.url).href
+
 // create and handle pirate ships like done with asteroids
 export class PirateShip {
     constructor() {
@@ -23,7 +25,7 @@ export class PirateShip {
         this.pirateElm.className = "pirateShip"
 
         const pirateImg = document.createElement("img")
-        pirateImg.setAttribute("src", "../images/pirateShip.png")
+        pirateImg.setAttribute("src", pirateShipImageUrl)
         pirateImg.setAttribute("alt", "pirateship 1")
 
         this.pirateElm.appendChild(pirateImg)

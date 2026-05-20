@@ -1,5 +1,7 @@
 console.log("Asteroid class")
 
+const imagePath = (filename) => new URL(`../images/${filename}`, import.meta.url).href
+
 export class Asteroid {
     constructor() {
         this.width = 10
@@ -26,32 +28,32 @@ export class Asteroid {
 
         switch (randomNr) {
             case 0:
-                asteroidImg.setAttribute("src", "../images/asteroid.png")
+                asteroidImg.setAttribute("src", imagePath("asteroid.png"))
                 asteroidImg.setAttribute("alt", "asteroid 1")                
                 break;
             case 1:
-                asteroidImg.setAttribute("src", "../images/asteroid.png")
+                asteroidImg.setAttribute("src", imagePath("asteroid.png"))
                 asteroidImg.setAttribute("alt", "asteroid 1")                
                 break;
             case 2:
-                asteroidImg.setAttribute("src", "../images/asteroidCopper.png")
+                asteroidImg.setAttribute("src", imagePath("asteroidCopper.png"))
                 asteroidImg.setAttribute("alt", "asteroid 1")                
                 break;
             case 3:
-                asteroidImg.setAttribute("src", "../images/asteroidGold.png")
+                asteroidImg.setAttribute("src", imagePath("asteroidGold.png"))
                 asteroidImg.setAttribute("alt", "asteroid 1")                
                 break;
             case 4:
-                asteroidImg.setAttribute("src", "../images/asteroidIron.png")
+                asteroidImg.setAttribute("src", imagePath("asteroidIron.png"))
                 asteroidImg.setAttribute("alt", "asteroid 1")                
                 break;
             case 5:
-                asteroidImg.setAttribute("src", "../images/asteroidSilver.png")
+                asteroidImg.setAttribute("src", imagePath("asteroidSilver.png"))
                 asteroidImg.setAttribute("alt", "asteroid 1")                
                 break;
 
             default:
-                asteroidImg.setAttribute("src", "../images/asteroid.png")
+                asteroidImg.setAttribute("src", imagePath("asteroid.png"))
                 asteroidImg.setAttribute("alt", "asteroid 1")                
                 break;
 

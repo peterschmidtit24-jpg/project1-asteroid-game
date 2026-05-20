@@ -16,8 +16,8 @@ class GameManager {
         this.spawnPirateCtr = 0
         this.shipShooting = false
         this.pirateIsShooting = false
-        this.shootSoundPath = "../sounds/bullet-shot.wav"
-        this.exploPath = "../sounds/roid-explode.mp3"
+        this.shootSoundPath = new URL("../sounds/bullet-shot.wav", import.meta.url).href
+        this.exploPath = new URL("../sounds/roid-explode.mp3", import.meta.url).href
         this.score = {
             totalRoids: 0, 
             destroyedRoids: 0

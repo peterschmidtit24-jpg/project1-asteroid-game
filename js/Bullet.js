@@ -1,5 +1,7 @@
 console.log("Bullet Class")
 
+const bulletImageUrl = new URL("../images/Bullet.png", import.meta.url).href
+
 export class Bullet {
     constructor(playerShip) {
         this.playerShip = playerShip
@@ -23,7 +25,7 @@ export class Bullet {
         this.bulletElm.className = "bullet"
 
         const bulletImg = document.createElement("img")
-        bulletImg.setAttribute("src", "../images/Bullet.png")
+        bulletImg.setAttribute("src", bulletImageUrl)
         bulletImg.setAttribute("alt", "bullet object")
 
         this.bulletElm.appendChild(bulletImg)
