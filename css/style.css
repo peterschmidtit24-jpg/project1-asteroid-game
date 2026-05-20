@@ -18,7 +18,9 @@ body {
     width: 10vh;   /* feste Breite */
     height: auto;  /* feste Höhe  */
     display: block; 
-    mix-blend-mode: screen;  /* blendet helle Hintergründe aus */
+    /* mix-blend-mode: screen; */
+    opacity: 1;
+    mix-blend-mode: normal;      
 }
 
 #playerShip {
@@ -35,7 +37,9 @@ body {
   width: 15vh;
   height: auto;
   display: block;
-  mix-blend-mode: screen; 
+  /* mix-blend-mode: screen; */
+  opacity: 1;
+  mix-blend-mode: normal;  
 }
 
 .bullet {
@@ -48,3 +52,19 @@ body {
   display: block;
   mix-blend-mode: screen; 
 }
+
+.pirateShip  {
+  position: absolute;
+}
+
+.pirateShip img {
+  width: 10vh;
+  height: auto;
+  display: block;
+  /* mix-blend-mode: screen; */
+  opacity: 1;
+  mix-blend-mode: normal;    
+  /* rotate the pic */
+  transform: rotate(180deg);
+}
+

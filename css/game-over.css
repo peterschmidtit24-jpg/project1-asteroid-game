@@ -5,6 +5,7 @@ body {
   background-size: cover;        /* pic fills out the screen */
   background-position: center;   /* pic will be centered */
   background-repeat: no-repeat;  /* mo repetition of the pic */
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -29,18 +30,20 @@ body {
   width: 20vw;
   height: 8vh;
   background-color: crimson;
+  background-size: 100% 100%;
   color: white;
   text-decoration: none;
   font-size: large;
   margin: 2%;
+  border-radius: 10%;
 }
 
 #score-info {
-  color:aliceblue;
+  color: aliceblue;
   font-size: xx-small;
   background-color: rgba(220, 20, 60, 0.25);
   padding: 1%;
-  gap: 2rem;
+  width: 420px;
 }
 
 #shut-roids,
@@ -48,7 +51,9 @@ body {
 #percentage {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   gap: 2rem;
+  margin: 0.6rem 0;
 }
 
 #game-title {

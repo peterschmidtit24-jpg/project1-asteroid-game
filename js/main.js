@@ -3,6 +3,7 @@
 import { PlayerShip } from "./Ship.js"
 import { Asteroid } from "./Asteroid.js"
 import { Bullet } from "./Bullet.js"
+import { PirateShip } from "./pirateShip.js"
 
 class GameManager {
     constructor() {
@@ -10,7 +11,11 @@ class GameManager {
         this.player = new PlayerShip()
         this.asteroids = []
         this.bullets = []
+        this.pirates = []
+        this.pirateBullets = []
+        this.spawnPirateCtr = 0
         this.shipShooting = false
+        this.pirateIsShooting = false
         this.shootSoundPath = "../sounds/bullet-shot.wav"
         this.exploPath = "../sounds/roid-explode.mp3"
         this.score = {
@@ -57,13 +62,8 @@ class GameManager {
     }
 
     goToGameOver(gameStatus) {
-        console.log("Total asteroids over = ", this.score.totalRoids)
-        console.log("Total destroyed roids over = ", this.score.destroyedRoids)
 
         const percentage = (this.score.destroyedRoids/this.score.totalRoids)*100
-        console.log("Total destroyed roids % = ", percentage.toFixed(1))
-
-        //setScores(gameStatus, this.score.destroyedRoids, this.score.totalRoids)
 
         this.playExploSound()
         this.playExploSound()
@@ -79,7 +79,7 @@ class GameManager {
     }
 
     spawObjects() {
-        // spawn new asteroids
+        // spawn new asteroids        
 
         let testLimit = 0
         let timerId = setInterval(() => {
@@ -88,6 +88,13 @@ class GameManager {
             const newAsteroid = new Asteroid()
             this.asteroids.push(newAsteroid)    
             this.score.totalRoids++
+
+            // every x time a pirate ship shall spawn
+            this.spawnPirateCtr++
+            if (this.spawnPirateCtr%3 === 0){
+                const newPirate = new PirateShip()
+                this.pirates.push(newPirate)
+            }
 
             testLimit++
             console.log("testLimit = ", testLimit)
@@ -110,7 +117,18 @@ class GameManager {
                 this.playShootSound() 
 
                 this.shipShooting = false
+            } else {
+                // if pirate is shooting
+                if (this.pirates.length > 0) {
+                    this.pirateIsShooting = true
+
+                    // here the pirate bullets
+                }
+                else {
+                    this.pirateIsShooting = false
+                }
             }
+
             
             // clearInterval(timerId)
         }, 600);       
@@ -131,7 +149,18 @@ class GameManager {
                         this.goToGameOver("destroyed")
                     }
                 }
-            });         
+            });        
+            
+            // handle the pirates: move and shoot
+            this.pirates.forEach( (pirate) => {
+                // let the asteroid fall down
+
+                if (pirate != null) {
+                    pirate.moveDown()
+                    pirate.shoot()
+                }
+            });        
+
             
             // let the bullets shoot up
             this.bullets.forEach((bullet) => {
@@ -176,8 +205,6 @@ document.addEventListener("keydown", (e) => {
         gameManager.player.moveLeft()
     } else if (e.code === "ArrowRight") {
         gameManager.player.moveRight()
-        // test test
-        // gameManager.newAsteroid.moveDown()
     } else if (e.code === "Space") {
         console.log("Ship is shooting.")
         gameManager.setShooting()
@@ -187,6 +214,6 @@ document.addEventListener("keydown", (e) => {
 // if page left, stop the game
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-        location.href = "./html/gameover.html"
+        location.href = "../html/gameover.html"
     }
 })

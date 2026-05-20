@@ -4,11 +4,7 @@ console.log("Gameover screen.")
 let shotAsteroids = 0
 let totalAsteroids = 0
 
-//function setScores(pgameStatus, pshotAsteroids, ptotalAsteroids) {
 function setScores() {
-
-    // console.log("shotAsteroids, totalAsteroids = " + shotAsteroids)
-    // console.log("shotAsteroids, totalAsteroids = " + totalAsteroids)
 
     // adjust the html elements to the data    
     const gameStatus = document.getElementById("game-status")
@@ -41,8 +37,3 @@ function setScores() {
 }
 
 setScores()
-
-// console.log(shotAsteroids)
-// console.log(totalAsteroids)
-
-// export { setScores };

@@ -20,9 +20,44 @@ export class Asteroid {
         // step2: add content or modify (ex. innerText, innerHTML, src...)
         this.asteroidElm.className = "asteroid"
 
+        // here a random generator for which asteroid pic shall be used
+        const randomNr = Math.floor(Math.random() * 5);
         const asteroidImg = document.createElement("img")
-        asteroidImg.setAttribute("src", "../images/asteroid.png")
-        asteroidImg.setAttribute("alt", "asteroid 1")
+
+        switch (randomNr) {
+            case 0:
+                asteroidImg.setAttribute("src", "../images/asteroid.png")
+                asteroidImg.setAttribute("alt", "asteroid 1")                
+                break;
+            case 1:
+                asteroidImg.setAttribute("src", "../images/asteroid.png")
+                asteroidImg.setAttribute("alt", "asteroid 1")                
+                break;
+            case 2:
+                asteroidImg.setAttribute("src", "../images/asteroidCopper.png")
+                asteroidImg.setAttribute("alt", "asteroid 1")                
+                break;
+            case 3:
+                asteroidImg.setAttribute("src", "../images/asteroidGold.png")
+                asteroidImg.setAttribute("alt", "asteroid 1")                
+                break;
+            case 4:
+                asteroidImg.setAttribute("src", "../images/asteroidIron.png")
+                asteroidImg.setAttribute("alt", "asteroid 1")                
+                break;
+            case 5:
+                asteroidImg.setAttribute("src", "../images/asteroidSilver.png")
+                asteroidImg.setAttribute("alt", "asteroid 1")                
+                break;
+
+            default:
+                asteroidImg.setAttribute("src", "../images/asteroid.png")
+                asteroidImg.setAttribute("alt", "asteroid 1")                
+                break;
+
+        }
+
+
 
         this.asteroidElm.appendChild(asteroidImg)
         
