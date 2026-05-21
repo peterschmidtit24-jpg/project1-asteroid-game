@@ -12,6 +12,8 @@ body {
   height: 100vh;
   /* doesn't scroll the windows before the asteroids reach teh bottom */
   overflow: hidden;
+  touch-action: none;
+  user-select: none;
 }
 
 #playerShip img {
@@ -68,3 +70,42 @@ body {
   transform: rotate(180deg);
 }
 
+#mobileControls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 2vh;
+  z-index: 10;
+  display: none;
+  grid-template-columns: repeat(3, 64px);
+  justify-content: space-between;
+  padding: 0 7vw;
+  pointer-events: none;
+}
+
+#mobileControls button {
+  width: 64px;
+  height: 64px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.42);
+  color: white;
+  font-size: 28px;
+  line-height: 1;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+#mobileControls button:active {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+#shootBtn {
+  font-size: 24px;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+  #mobileControls {
+    display: grid;
+  }
+}

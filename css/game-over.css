@@ -60,3 +60,8 @@ body {
   color: gold;
   font-size: xx-large;
 }
+
+#game-status {
+  color: rgb(255, 0, 8);
+  font-size: x-large;
+}

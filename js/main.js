@@ -48,7 +48,7 @@ class GameManager {
 
             // every x time a pirate ship shall spawn
             this.spawnPirateCtr++
-            if (this.spawnPirateCtr%4 === 0){
+            if (this.spawnPirateCtr%5 === 0){
                 const newPirate = new PirateShip()
                 this.pirates.push(newPirate)
             } else {
@@ -235,6 +235,45 @@ class GameManager {
 
 const gameManager = new GameManager()
 gameManager.startGameLoop()
+
+const startHoldingButton = (button, action) => {
+    let holdTimerId = null
+
+    const stop = () => {
+        clearInterval(holdTimerId)
+        holdTimerId = null
+    }
+
+    const start = (e) => {
+        e.preventDefault()
+
+        if (holdTimerId !== null) {
+            return
+        }
+
+        action()
+        holdTimerId = setInterval(action, 30)
+    }
+
+    button.addEventListener("pointerdown", start)
+    button.addEventListener("pointerup", stop)
+    button.addEventListener("pointercancel", stop)
+    button.addEventListener("pointerleave", stop)
+}
+
+const moveLeftBtn = document.getElementById("moveLeftBtn")
+const moveRightBtn = document.getElementById("moveRightBtn")
+const shootBtn = document.getElementById("shootBtn")
+
+if (moveLeftBtn && moveRightBtn && shootBtn) {
+    startHoldingButton(moveLeftBtn, () => gameManager.player.moveLeft())
+    startHoldingButton(moveRightBtn, () => gameManager.player.moveRight())
+
+    shootBtn.addEventListener("pointerdown", (e) => {
+        e.preventDefault()
+        gameManager.setShooting()
+    })
+}
 
 // Key left and right to move the ship. Space to fire the bullets from the player ship.
 document.addEventListener("keydown", (e) => {

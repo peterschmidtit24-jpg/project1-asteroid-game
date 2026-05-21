@@ -17,19 +17,15 @@ function setScores() {
     const shotRoidsDt = localStorage.getItem("shotRoids");
 
     if (savedStatusDt === "won") {
-        gameStatus.innerText = `You won. Your ship survided !`
+        gameStatus.innerText = "You won. Your ship survived!"
+        gameStatus.style.color = "green"
     } else {
-        gameStatus.innerText = `You lost. Your ship is destroyed !`
+        gameStatus.innerText = "You lost. Your ship is destroyed!"
+        gameStatus.style.color = "red"
     }
 
     const calcPercentage = (shotRoidsDt/totalRoidsDt)*100
-
-    /*
-    shutRoids.innerText  = `Harvested asteroids ..... ${shotRoidsDt}` 
-    totalRoids.innerText = `Total asteroids ........ ${totalRoidsDt}` 
-    percentage.innerText = `Success percentage is .. ${calcPercentage.toFixed(1)}%`
-    */
-   
+    
     shutRoids.innerHTML = `<span>Harvested asteroids</span><span>${shotRoidsDt}</span>`;
     totalRoids.innerHTML = `<span>Total asteroids</span><span>${totalRoidsDt}</span>`;
     percentage.innerHTML = `<span>Success percentage</span><span>${calcPercentage.toFixed(1)}%</span>`;
