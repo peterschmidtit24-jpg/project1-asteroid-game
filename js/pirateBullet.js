@@ -1,14 +1,15 @@
 
-const bulletImageUrl = new URL("../images/Bullet.png", import.meta.url).href
 
-export class Bullet {
-    constructor(playerShip) {
-        this.playerShip = playerShip
+const bulletImageUrl = new URL("../images/pirateBullet.png", import.meta.url).href
+
+export class PirateBullet {
+    constructor(pirateShip) {
+        this.pirateShip = pirateShip
 
         this.width = 0.5
         this.height = 0.9
-        this.positionX = this.playerShip.positionX // 20 // position of the bullet x
-        this.positionY = this.playerShip.positionY //20 // position of the bullet y
+        this.positionX = this.pirateShip.positionX // 20 // position of the bullet x
+        this.positionY = this.pirateShip.positionY //20 // position of the bullet y
 
         this.bulletElm = null
 

@@ -1,5 +1,4 @@
 
-console.log("Pirate ship shooting.")
 
 const pirateShipImageUrl = new URL("../images/pirateShip.png", import.meta.url).href
 
@@ -72,7 +71,7 @@ export class PirateShip {
     }
 
     shoot() {
-        console.log("Pirate ship shall shoot!")
+        // console.log("Pirate ship shall shoot!")
     }
 
     deleteShip() {

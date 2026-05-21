@@ -1,5 +1,4 @@
 
-console.log("Player Ship class")
 
 export class PlayerShip {
     constructor() {

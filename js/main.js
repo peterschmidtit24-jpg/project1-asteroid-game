@@ -3,11 +3,11 @@
 import { PlayerShip } from "./Ship.js"
 import { Asteroid } from "./Asteroid.js"
 import { Bullet } from "./Bullet.js"
+import { PirateBullet } from "./pirateBullet.js"
 import { PirateShip } from "./pirateShip.js"
 
 class GameManager {
     constructor() {
-        console.log("Gamemaneger created.")
         this.player = new PlayerShip()
         this.asteroids = []
         this.bullets = []
@@ -41,19 +41,27 @@ class GameManager {
     }
 
     startNextLevel() {
-        console.log("Now starting the next level.")
+        // console.log("Now starting the next level.")
 
-        let testLimit2 = 0
+        let levelLimit2 = 0
         let timerId = setInterval(() => {
-            const newAsteroid = new Asteroid()
-            this.asteroids.push(newAsteroid)
+
+            // every x time a pirate ship shall spawn
+            this.spawnPirateCtr++
+            if (this.spawnPirateCtr%4 === 0){
+                const newPirate = new PirateShip()
+                this.pirates.push(newPirate)
+            } else {
+                const newAsteroid = new Asteroid()
+                this.asteroids.push(newAsteroid)
+            }
 
             this.score.totalRoids++
-            testLimit2++
-            console.log("testLimit2 = ", testLimit2)
+            levelLimit2++
+            // console.log("testLimit2 = ", testLimit2)
 
-            if (testLimit2 > 10) {
-                console.log("Total asteroids = ", this.score.totalRoids)
+            if (levelLimit2 > 50) {
+               // console.log("Total asteroids = ", this.score.totalRoids)
 
                 clearInterval(timerId)
                 this.goToGameOver("won")
@@ -73,34 +81,33 @@ class GameManager {
             localStorage.setItem("totalRoids", this.score.totalRoids);
             localStorage.setItem("shotRoids", this.score.destroyedRoids);
 
-            console.log("Game over. Game over. Game over. Game over.")
+            // console.log("Game over. Game over. Game over. Game over.")
             location.href = "../html/gameover.html"  
         }, 8500);        
     }
 
     spawObjects() {
         // spawn new asteroids        
-
-        let testLimit = 0
+        let levelLimit = 0
         let timerId = setInterval(() => {
-
-            // create a new asteroid, position it randomly
-            const newAsteroid = new Asteroid()
-            this.asteroids.push(newAsteroid)    
-            this.score.totalRoids++
 
             // every x time a pirate ship shall spawn
             this.spawnPirateCtr++
             if (this.spawnPirateCtr%3 === 0){
                 const newPirate = new PirateShip()
                 this.pirates.push(newPirate)
+            } else {
+                // create a new asteroid, position it randomly
+                const newAsteroid = new Asteroid()
+                this.asteroids.push(newAsteroid)    
+                this.score.totalRoids++
             }
 
-            testLimit++
-            console.log("testLimit = ", testLimit)
+            levelLimit++
+            // console.log("testLimit = ", testLimit)
             // limit the number of asteroids (for testting for now)
-            if (testLimit > 5) {
-                console.log("Switching to next level")
+            if (levelLimit > 20) {
+                // console.log("Switching to next level")
                 this.startNextLevel()
 
                 clearInterval(timerId)
@@ -123,19 +130,22 @@ class GameManager {
                     this.pirateIsShooting = true
 
                     // here the pirate bullets
+                    this.pirates.forEach((pirate) => {
+                        const newPirateBullet = new PirateBullet(pirate)
+                        this.pirateBullets.push(newPirateBullet)
+                    })
                 }
                 else {
                     this.pirateIsShooting = false
                 }
             }
 
-            
-            // clearInterval(timerId)
-        }, 600);       
+        }, 400);       
 
     }
 
     moveAndCheckCollisions() {
+        // check on collission of asteroids with the ship
         setInterval(() => {
             this.asteroids.forEach( (roid) => {
                 // let the asteroid fall down
@@ -153,7 +163,7 @@ class GameManager {
             
             // handle the pirates: move and shoot
             this.pirates.forEach( (pirate) => {
-                // let the asteroid fall down
+                // let the pirate ships fall down
 
                 if (pirate != null) {
                     pirate.moveDown()
@@ -162,14 +172,14 @@ class GameManager {
             });        
 
             
-            // let the bullets shoot up
+            // let the bullets of the player ship shoot up
             this.bullets.forEach((bullet) => {
                 bullet.moveUp()
 
                 // if it's colliding with any asteroid
                 // preselect all the astroids which are on it's trajectory
 
-                // collider numer returned: -1 = none, asteroid index number else
+                // collider nubmer returned: -1 = none, return asteroid index number else
                 const roidCollider = bullet.isCollidingWith(this.asteroids)
 
                 // if number >= 0 destroy the colliding asteroid
@@ -183,13 +193,39 @@ class GameManager {
                         this.playExploSound()
                     }   
                 }
+
+                // check if bullet destroyed pirate ship. make the pirate dissappear
+                const pirateShot = bullet.isCollidingWith(this.pirates)
+                if (pirateShot > -1) { 
+                    if (this.pirates[pirateShot].pirateElm != null) {
+                        this.pirates[pirateShot].deleteShip()
+                        // remove the pirate from the list
+                        this.pirates.splice(pirateShot, 1)
+                        this.playExploSound()
+                    }
+                }
             });
-            
+
+            // handling the  pirate bullets
+            this.pirateBullets.forEach((bullet) => {
+                bullet.moveDown()
+
+                // check if pirate bullets collide with the player ship
+                const shipArray = []
+                shipArray.push(this.player)
+
+                const playerShut = bullet.isCollidingWith(shipArray)
+                 // if number >= 0 ship destroyed
+                if (playerShut > -1) {
+                    this.player.deleteShip()
+                    this.goToGameOver("destroyed")
+                }
+            });                        
         }, 50);
     }
 
     startGameLoop() {
-        console.log("Start the game loop")
+        // console.log("Start the game loop")
 
         this.spawObjects()
         this.moveAndCheckCollisions()
@@ -200,6 +236,7 @@ class GameManager {
 const gameManager = new GameManager()
 gameManager.startGameLoop()
 
+// Key left and right to move the ship. Space to fire the bullets from the player ship.
 document.addEventListener("keydown", (e) => {
     if (e.code === "ArrowLeft") {
         gameManager.player.moveLeft()

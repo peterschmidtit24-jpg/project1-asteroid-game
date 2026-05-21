@@ -1,5 +1,4 @@
 
-console.log("Gameover screen.")
 
 let shotAsteroids = 0
 let totalAsteroids = 0

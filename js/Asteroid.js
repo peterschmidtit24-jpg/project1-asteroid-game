@@ -1,6 +1,7 @@
-console.log("Asteroid class")
 
-const imagePath = (filename) => new URL(`../images/${filename}`, import.meta.url).href
+// const imagePath = (filename) => new URL(`../images/${filename}`, import.meta.url).href
+import { asteroidImages } from "./images.js"
+
 
 export class Asteroid {
     constructor() {
@@ -23,43 +24,14 @@ export class Asteroid {
         this.asteroidElm.className = "asteroid"
 
         // here a random generator for which asteroid pic shall be used
-        const randomNr = Math.floor(Math.random() * 5);
+        // const randomNr = Math.floor(Math.random() * 5);
         const asteroidImg = document.createElement("img")
 
-        switch (randomNr) {
-            case 0:
-                asteroidImg.setAttribute("src", imagePath("asteroid.png"))
-                asteroidImg.setAttribute("alt", "asteroid 1")                
-                break;
-            case 1:
-                asteroidImg.setAttribute("src", imagePath("asteroid.png"))
-                asteroidImg.setAttribute("alt", "asteroid 1")                
-                break;
-            case 2:
-                asteroidImg.setAttribute("src", imagePath("asteroidCopper.png"))
-                asteroidImg.setAttribute("alt", "asteroid 1")                
-                break;
-            case 3:
-                asteroidImg.setAttribute("src", imagePath("asteroidGold.png"))
-                asteroidImg.setAttribute("alt", "asteroid 1")                
-                break;
-            case 4:
-                asteroidImg.setAttribute("src", imagePath("asteroidIron.png"))
-                asteroidImg.setAttribute("alt", "asteroid 1")                
-                break;
-            case 5:
-                asteroidImg.setAttribute("src", imagePath("asteroidSilver.png"))
-                asteroidImg.setAttribute("alt", "asteroid 1")                
-                break;
+        const randomNr = Math.floor(Math.random() * asteroidImages.length)
+        const selectedAsteroid = asteroidImages[randomNr]
 
-            default:
-                asteroidImg.setAttribute("src", imagePath("asteroid.png"))
-                asteroidImg.setAttribute("alt", "asteroid 1")                
-                break;
-
-        }
-
-
+        asteroidImg.setAttribute("src", selectedAsteroid.src)
+        asteroidImg.setAttribute("alt", selectedAsteroid.alt)
 
         this.asteroidElm.appendChild(asteroidImg)
         
