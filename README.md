@@ -6,6 +6,10 @@ Asteroid game built with web technologies: HTML, CSS, and JavaScript.
 
 The player controls a spaceship and has to survive falling asteroids and pirate ships. The player can shoot asteroids and pirate ships, while pirate ships can also shoot back. The game tracks how many asteroids were destroyed (harvested) and shows the result on the game over page.
 
+## Screenshot
+
+![Asteroid game screenshot](./images/background1.png)
+
 ## How to Play
 
 Move the player ship with the arrow keys:
